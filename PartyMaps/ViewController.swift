@@ -6,27 +6,38 @@
 //
 
 import UIKit
+
 import GoogleMaps
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     // https://developers.google.com/maps
+    
+    let locManager = CLLocationManager();
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
-        self.view.addSubview(mapView)
 
+        locManager.delegate = self // so we can receive event calls
+        locManager.requestWhenInUseAuthorization() // Asks for permit
+        locManager.startUpdatingLocation() // starts location updates
+        let GOOGLE_TOKEN = "AIzaSyAIkYiBEIVgR1uifZCL1AAxAZp5AOX2BYY"
+        GMSServices.provideAPIKey(GOOGLE_TOKEN)
+        
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        let coord = location.coordinate
+        let camera = GMSCameraPosition.camera(withLatitude: coord.latitude, longitude: coord.longitude, zoom: 1.0)
+        let mapView = GMSMapView.map(withFrame: view.frame, camera: camera)
+        view.addSubview(mapView)
+        
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
+        marker.position = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
         marker.map = mapView
     }
-
 }
 
