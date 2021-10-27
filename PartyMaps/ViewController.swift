@@ -6,25 +6,37 @@
 //
 
 import UIKit
-
 import GoogleMaps
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+import FloatingPanel
+
+class ViewController: UIViewController, CLLocationManagerDelegate, FloatingPanelControllerDelegate {
     // https://developers.google.com/maps
     
     let locManager = CLLocationManager();
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
 
         locManager.delegate = self // so we can receive event calls
         locManager.requestWhenInUseAuthorization() // Asks for permit
         locManager.startUpdatingLocation() // starts location updates
+        
         let GOOGLE_TOKEN = "AIzaSyAIkYiBEIVgR1uifZCL1AAxAZp5AOX2BYY"
         GMSServices.provideAPIKey(GOOGLE_TOKEN)
         
+        // party_list
+        let floating_panel = FloatingPanelController() // The bottom scroll-up view = Floating Panel
+        floating_panel.delegate = self // optional
+        
+        guard let party_list_tableView = storyboard?.instantiateViewController(identifier: "party_list") as? EventsViewController else {
+            return
+        }
+        floating_panel.set(contentViewController: party_list_tableView)
+        floating_panel.addPanel(toParent: self)
+        
     }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
             return

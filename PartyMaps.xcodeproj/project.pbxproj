@@ -17,6 +17,7 @@
 		7A3F34812727703E000AD591 /* PartyMapsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3F34802727703E000AD591 /* PartyMapsUITests.swift */; };
 		7A3F34832727703E000AD591 /* PartyMapsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3F34822727703E000AD591 /* PartyMapsUITestsLaunchTests.swift */; };
 		7A41AF512728D30A007D4BB5 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A41AF502728D30A007D4BB5 /* EventsViewController.swift */; };
+		7AC720412728DE340060A211 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 7AC720402728DE340060A211 /* FloatingPanel */; };
 		7BE9212AE7439C09893067F3 /* libPods-PartyMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4234ABD9667D8F75A8FB9D1F /* libPods-PartyMaps.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BE9212AE7439C09893067F3 /* libPods-PartyMaps.a in Frameworks */,
+				7AC720412728DE340060A211 /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +174,9 @@
 			dependencies = (
 			);
 			name = PartyMaps;
+			packageProductDependencies = (
+				7AC720402728DE340060A211 /* FloatingPanel */,
+			);
 			productName = PartyMaps;
 			productReference = 7A3F345C2727703C000AD591 /* PartyMaps.app */;
 			productType = "com.apple.product-type.application";
@@ -244,6 +249,9 @@
 				Base,
 			);
 			mainGroup = 7A3F34532727703C000AD591;
+			packageReferences = (
+				7AC7203F2728DE340060A211 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+			);
 			productRefGroup = 7A3F345D2727703C000AD591 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -391,7 +399,9 @@
 		7A3F34842727703E000AD591 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -425,7 +435,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -443,7 +453,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -453,7 +463,9 @@
 		7A3F34852727703E000AD591 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -487,7 +499,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -703,6 +715,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7AC7203F2728DE340060A211 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7AC720402728DE340060A211 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7AC7203F2728DE340060A211 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7A3F34542727703C000AD591 /* Project object */;
 }

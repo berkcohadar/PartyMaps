@@ -1,0 +1,6 @@
+module Pods_PartyMaps {
+  umbrella header "Pods-PartyMaps-umbrella.h"
+
+  export *
+  module * { export * }
+}
