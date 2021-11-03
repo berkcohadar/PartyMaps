@@ -8,9 +8,7 @@
 import UIKit
 import GoogleMaps
 
-import FloatingPanel
-
-class ViewController: UIViewController, CLLocationManagerDelegate, FloatingPanelControllerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     // https://developers.google.com/maps
     
     let locManager = CLLocationManager();
