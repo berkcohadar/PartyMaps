@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,22 +13,56 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PartyMaps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="jQs-Id-7ho">
+                                <rect key="frame" x="0.0" y="44" width="428" height="802"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jQs-Id-7ho" secondAttribute="height" multiplier="214:407" id="LPA-a7-HdK"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vda-O2-a4w">
+                                <rect key="frame" x="0.0" y="846" width="428" height="80"/>
+                                <color key="backgroundColor" red="0.19121927020000001" green="0.41206544639999998" blue="0.34377008679999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="MmW-ct-MRt"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Party!"/>
+                                <connections>
+                                    <segue destination="7GQ-kP-07V" kind="show" id="3xN-Db-td6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jQs-Id-7ho" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KJ8-1E-Tkb"/>
+                            <constraint firstItem="Vda-O2-a4w" firstAttribute="top" secondItem="jQs-Id-7ho" secondAttribute="bottom" id="Rly-8w-gdb"/>
+                            <constraint firstItem="jQs-Id-7ho" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WDV-gP-nSC"/>
+                            <constraint firstItem="jQs-Id-7ho" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XcM-1T-05l"/>
+                            <constraint firstAttribute="bottom" secondItem="Vda-O2-a4w" secondAttribute="bottom" id="cUm-wd-Y9c"/>
+                            <constraint firstItem="Vda-O2-a4w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kRS-Ke-ahh"/>
+                            <constraint firstItem="Vda-O2-a4w" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tfH-mu-klb"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="googleMaps" destination="jQs-Id-7ho" id="Rdv-TH-E4J"/>
+                        <outlet property="showEventsButton" destination="Vda-O2-a4w" id="Ow0-xe-IFv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="94" y="117"/>
+            <point key="canvasLocation" x="92.523364485981304" y="115.98272138228943"/>
         </scene>
         <!--Events View Controller-->
         <scene sceneID="VPw-9Z-KCx">
             <objects>
                 <viewController storyboardIdentifier="party_list" id="7GQ-kP-07V" customClass="EventsViewController" customModule="PartyMaps" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jFI-rI-KdJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dsw-oe-Mlp">
@@ -45,13 +79,14 @@
                             <constraint firstItem="Mar-H9-36T" firstAttribute="bottom" secondItem="Dsw-oe-Mlp" secondAttribute="bottom" id="lAy-mD-jdr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="M5g-i6-sdE"/>
                     <connections>
                         <outlet property="TableList" destination="Dsw-oe-Mlp" id="dG0-eH-thl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zo7-UK-60A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="739" y="117"/>
+            <point key="canvasLocation" x="883" y="117"/>
         </scene>
     </scenes>
     <resources>
