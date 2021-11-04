@@ -25,33 +25,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let GOOGLE_TOKEN = "AIzaSyAIkYiBEIVgR1uifZCL1AAxAZp5AOX2BYY"
         GMSServices.provideAPIKey(GOOGLE_TOKEN)
         
-        // party_list
-        guard let party_list_tableView = storyboard?.instantiateViewController(identifier: "party_list") as? EventsViewController else {
-            return
-        }
-        
-
-
         view.addSubview(showEventsButton)
         view.bringSubviewToFront(showEventsButton)
-
-    }
-        
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
-            return
-        }
-
-        let coord = location.coordinate
-        let camera = GMSCameraPosition.camera(withLatitude: coord.latitude, longitude: coord.longitude, zoom: 1.0)
-
         view.addSubview(googleMaps)
-        /*
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
-        marker.map = mapView
-         */
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EventsView" {
+            let destination = segue.destination as! EventsViewController
+            destination.mapView = googleMaps
+            
+        }
     }
 }
 

@@ -6,20 +6,24 @@
 //
 
 import UIKit
+import GoogleMaps
+import MapKit
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    var mapView: MKMapView!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if shoppingList.count == 0 {
+        if partyList.count == 0 {
             tableView.emptyScreen("No items yet! Press button to start.")
         } else {
             tableView.restore()
         }
-        return shoppingList.count
+        return partyList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for:indexPath)
-        cell.textLabel?.text = shoppingList[indexPath.row]
+        cell.textLabel?.text = partyList[indexPath.row].title
         return cell
     }
     
@@ -29,24 +33,33 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            shoppingList.remove(at: indexPath.row)
+            partyList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
         }
     }
  
-    var shoppingList:[String] = ["NEW YORK","NEW JERSEY","CALIFORNIA"];
+    var partyList:[GMSMarker] = [];
     @IBOutlet var TableList: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         TableList.delegate = self
         TableList.dataSource = self
+        
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        marker.map = mapView
+        
+        
+        partyList.append(marker);
     }
 }
 
 extension UITableView {
     
-    func emptyScreen(_ text: String) { // Will be called when there is no item in the "shoppingList" array.
+    func emptyScreen(_ text: String) { // Will be called when there is no item in the "partyList" array.
         let emptyMessage = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
         emptyMessage.text = text
         emptyMessage.textColor = .black
