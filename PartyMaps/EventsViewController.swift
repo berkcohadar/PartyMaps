@@ -11,6 +11,16 @@ import MapKit
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var mapView: MKMapView!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        mapView.setCenter(partyList[indexPath.row].coordinate, animated: true)
+        
+        let camera = MKMapCamera()
+        camera.centerCoordinate = partyList[indexPath.row].coordinate
+        camera.altitude = 2000000.0
+        camera.heading = 60.0
+    
+        mapView.setCamera(camera, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if partyList.count == 0 {
@@ -38,7 +48,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
  
-    var partyList:[GMSMarker] = [];
+    var partyList:[MKPointAnnotation] = [];
     @IBOutlet var TableList: UITableView!
     
     override func viewDidLoad() {
@@ -46,14 +56,29 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         TableList.delegate = self
         TableList.dataSource = self
         
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
+
+        let annotation = MKPointAnnotation()
+        let centerCoordinate = CLLocationCoordinate2D(latitude: 40.5, longitude: -74)
+        annotation.coordinate = centerCoordinate
+        annotation.title = "New York"
+        mapView.addAnnotation(annotation)
         
+        let annotation2 = MKPointAnnotation()
+        let centerCoordinate2 = CLLocationCoordinate2D(latitude: 26, longitude: -81)
+        annotation2.coordinate = centerCoordinate2
+        annotation2.title = "Florida"
+        mapView.addAnnotation(annotation2)
         
-        partyList.append(marker);
+        let annotation3 = MKPointAnnotation()
+        let centerCoordinate3 = CLLocationCoordinate2D(latitude: 34, longitude: -118)
+        annotation3.coordinate = centerCoordinate3
+        annotation3.title = "California"
+        mapView.addAnnotation(annotation3)
+        
+        partyList.append(annotation);
+        partyList.append(annotation2);
+        partyList.append(annotation3);
+        
     }
 }
 
